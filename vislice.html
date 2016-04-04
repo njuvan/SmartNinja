@@ -1,0 +1,71 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Vislice</title>
+</head>
+<body>
+
+<script>
+
+var words = ['prenosnik', 'smartninja', 'programiranje', 'vislice', 'fizzbuzz'];
+var guessCount = 0;
+var loop = true;
+var inputs = [];
+
+// izbira besede
+word = words[Math.floor(Math.random() * words.length)];
+dashedWord = wordDash(word);
+//console.log(word);
+//console.log(dashedWord);
+
+while (loop == true) {
+	var input = prompt("BESEDA: " + dashedWord + "\nUgani posamezno crko ali celo besedo naenkrat.\nZe porabljeno: " + inputs);
+
+	if (input.length == 1) {
+		if (inputs.indexOf(input) == -1) {
+			guessCount ++;
+			inputs.push(input);
+
+			for (i in word) {
+				if (word[i] == input) {
+					dashedWord = dashedWord.split('');
+					//console.log(dashedWord);
+					dashedWord[i] = input;
+					dashedWord = dashedWord.join('');
+					//console.log(dashedWord);
+				}
+			}
+
+			if (dashedWord == word) {
+				loop = false;
+				alert(word.toUpperCase() + '\n\nCestitam, uspelo ti je v ' + guessCount + ' poskusih.');
+			}
+		}
+	}
+	else {
+		if (input == word) {
+			guessCount ++;
+			loop = false;
+			alert(word.toUpperCase() + '\n\nCestitam, uspelo ti je v ' + guessCount + ' poskusih.');
+		}
+		else {
+			loop = false;
+			alert('Bit of more than you could chew, eh?\n\nGAME OVER\n\n');
+		}
+	}
+}
+
+
+// Funkcije
+function wordDash(word) {
+	var dashes = "";
+	for (i = 0; i < word.length; i++) {
+		dashes += "-";
+	}
+	return dashes;
+}
+
+</script>
+
+</body>
+</html>

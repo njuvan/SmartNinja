@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ugani stevilo</title>
+</head>
+<body>
+
+
+<script>
+
+while (true) {
+	// Vnos zgornje in spodnje meje
+	var limits = prompt("Vpisi spodnjo in zgornjo mejo, znotraj katerih bos ugibal stevila. Vrednosti loci z vejico.");
+	limits = limits.split(',');
+
+	for (var i in limits) {
+		limits[i] = parseInt(limits[i].replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, ''));
+	}
+	// -----
+
+	// Random number
+	x = limits[1] - limits[0];
+	var randNum = parseInt((Math.random() * x) + limits[0]);
+	console.log(randNum);
+	// -----
+
+	// Ugibanje
+	var guesses = [];
+	var guess = parseInt(prompt('Ugani stevilo med ' + limits[0] + ' in ' + limits[1]));
+	guesses.push(guess);
+	console.log(guesses);
+	while (guess !== randNum){
+		if (guess < randNum) {
+			var guess = parseInt(prompt('Iskano stevilo je vecje od izbranega.'));
+			guesses.push(guess);
+			console.log(guesses);
+		}
+		else {
+			var guess = parseInt(prompt('Iskano stevilo je manjse od izbranega.'));
+			guesses.push(guess);
+			console.log(guesses);
+		}
+	}
+
+	alert('Success! St. poskusov: ' + guesses.length);
+	// -----
+}
+
+</script>
+</body>
+</html>
